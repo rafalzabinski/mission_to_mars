@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+   <!----------------SCRAPE BUTTON -------------------------->  
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1><b>Mission to Mars</b></h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+  <!----------------LATEST MARS NEWS -------------------------->  
+    <div class="row">
+      <div class="col-md-12">
+        <div class="media">
+          <div class="media-body">
+            <h2><b>Latest Mars News</b></h2>
+            <h4 class="media-heading"><b>{{mars.title}}</b></h4>
+            <h5></p>{{mars.paragraph}}</p></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!---------------- IMAGE --------------------------> 
+    <div class="row">
+      <!-- First section is for the featured Mars image-->
+      <div class="col-md-9">
+        <h2><b>Featured Mars Image</b></h2>
+          <img src="{{mars.mars_img_url}}" weight= "700" height="500">
+      </div>
+      <div class="col-md-3">
+<!---------------- TWEET ------------------------------> 
+        <div class="row">
+          <div class="col-md-12">
+              <div class="panel panel-default">
+                  <div class="panel-body">
+                      <h4><b>Current Weather on Mars</b></h4>
+                      <p>{{mars.weather_tweet}}</p>
+                  </div>
+              </div>
+          </div>
+        </div>
+<!---------------- HTML TABLE ------------------------------> 
+        <div class="row">
+          <div class="col-md-12">
+            <h4><b>Mars Facts</b></h4>
+          <p>{{mars.html_table| safe }}</p>
+          <!--<img src="{{mars.html}}">--> 
+          <p>There should be a table over here</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+<!---------------- HEMISPHERES ------------------------------> 
+    <div class="row" style="margin-top:100px;">
+      <div class="page-header">
+        <h2 class="text-center"><b>Mars Hemispheres</b></h2>
+          </div>
+      {% for hemisphere in mars.hemisphere_image_urls %}
+        <div class="col-md-8">
+            <div class="thumbnail">
+            <img src="{{hemisphere.img_url}}">
+            <div class="caption">
+                <h3><b>{{hemisphere.title}}</b></h3>
+            </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+
+</html>
